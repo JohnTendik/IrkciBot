@@ -82,7 +82,7 @@ const ignoreMessage = (item) => {
 const handleNewInboxItem = async (item) => {
   // return if not a mention & mark read so ignored for next poll
   if (!item.was_comment) {
-    console.log(`Ignoring message: ${item.id} from: ${item.author.name}`);
+    console.log(`Ignoring message: ${item.id}`);
     RedditApi.markMessagesAsRead([item.id]).then(() => {
       console.log('Message marked as read. Will be ignored for next poll');
     });
@@ -97,7 +97,7 @@ const handleNewInboxItem = async (item) => {
 
   // Get parent comment
   const parentContent = await getMentionParent(item.parent_id);
-  
+  console.log(parentContent);
   if (!parentContent) {
     return;
   }
@@ -108,9 +108,10 @@ const handleNewInboxItem = async (item) => {
       // translate content
       translateText(parentContent).then((response) => {
         const translatedText = response.result.translations[0].translation;
-        
+        console.log(translatedText);
         // reply to the comment / thread
-        item.reply(markdownMessage.replace('{replace}', translatedText));
+        const fixedTranslationMessage = translatedText.replace(/\n\n/g, '\n\n > ');
+        item.reply(markdownMessage.replace('{replace}', fixedTranslationMessage));
         
         // ignore once replied to.
         ignoreMessage(item);
