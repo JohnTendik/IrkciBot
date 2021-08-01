@@ -58,10 +58,10 @@ const getMentionParent = (parentId) => {
   if (parentId.includes('t3_')) {
     // is submission
     return RedditApi.getSubmission(parentId).fetch().then((response) => {
-      if (!response.selftext || response.selftext === '') {
-        return response.title;
-      } else {
+      if (response.selftext && response.selftext !== '') {
         return response.selftext;
+      } else {
+        return response.title;
       }
     });
   } else if (parentId.includes('t1_')) {
