@@ -1,0 +1,26 @@
+{
+  "name": "irkcibot",
+  "version": "1.0.0",
+  "description": "Irkci Bot, Burasi Turkiye, Turkce konus lan :joy:",
+  "main": "irkcibot.js",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "ibm-watson": "^6.1.1",
+    "snoowrap": "^1.23.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JohnTendik/IrkciBot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JohnTendik/IrkciBot/issues"
+  },
+  "homepage": "https://github.com/JohnTendik/IrkciBot#readme"
+}
